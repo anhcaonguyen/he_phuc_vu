@@ -1,0 +1,69 @@
+Các bước tạo Dịch vụ với NODEJS
+====================================================
+b1 Tạo thư mục lưu trữ: he_phuc_vu
+b2 Tạo tập tin package.json: lưu trữ các module sử dụng cho ứng dụng
+    npm init -y
+
+b3 Cài đặt module dotenv (Quản lý các biến môi trường)
+    npm i dotenv --s
+b4 Tạo tập tin: .env khai báo các biến môi trường
+b5 Tạo tập tin: server.js
+    ....
+b6 Thực thi dịch vụ: chọn một trong 3 cách sau
+    6.1: debug => F5
+    6.2: node
+        Tab terminal=> Gõ lệnh node ./server.js
+        stop:  CTRL + C
+    6.3: npm start
+        trong tập tin package.json bổ sung:
+        "scripts": {
+            "test": "echo \"Error: no test specified\" && exit 1",
+            "start": "node ./server.js"
+        },
+        Tab terminal=> Gõ lệnh npm start
+        stop: CTRL + C 
+b7 Cài đặt extensions: REST CLIENT (Test API)
+b8 Tạo tập tin: testAPI.rest
+========================== POST ===================
+
+Thêm một người dùng mới =>
+Client gởi dữ liệu về server
+let document_user={
+	"Ho_ten":"Nguyễn Anh Tuấn",
+	"Ma_so":"QL_200",
+	"Ten_Dang_nhap":"natuan",
+	"Mat_khau":"tuan010542",
+	"Nhom_Nguoi_dung":{
+		"Ten":"Nhân viên Quản lý",
+		"Ma_so":"NHAN_VIEN_QUAN_LY"
+	}
+}
+Server Nhận dữ liệu -> Xử lý THÊM vào collection user => Trả kết lại cho Client
+========================== PUT (UPDATE) ===================
+Sửa một người dùng  =>
+    Mã hoặc ID
+Client gởi dữ liệu về server
+
+let filter={
+    "Ma_so":"QL_300"
+}
+let new_document={
+	"Ho_ten":"Giá trị Mới",
+	"Ten_Dang_nhap":"Giá trị Mới",
+	"Mat_khau":"Giá trị Mới"
+}
+
+Server Nhận dữ liệu -> Xử lý UPDATE vào collection user => Trả kết lại cho Client
+
+========================== DELETE (Xóa) ===================
+Xóa một người dùng  =>
+    Mã hoặc ID
+Client gởi dữ liệu về server
+
+let filter={
+    "Ma_so":"QL_300"
+}
+
+Server Nhận dữ liệu -> Xử lý DELETE vào collection user => Trả kết lại cho Client
+
+

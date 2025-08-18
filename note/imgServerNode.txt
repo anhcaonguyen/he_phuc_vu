@@ -1,0 +1,9 @@
+else if (url.match("\.png$")) {
+            let imagePath = `images${url}`;
+            if (!fs.existsSync(imagePath)) {
+                imagePath = `images/noImage.png`;
+            }
+            let fileStream = fs.createReadStream(imagePath);
+            res.writeHead(200, { "Content-Type": "image/png" });
+            fileStream.pipe(res);
+        }

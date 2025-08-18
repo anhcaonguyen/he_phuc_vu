@@ -1,0 +1,7 @@
+
+GET http://localhost:8080/LIST_TIVI
+GET http://localhost:8080/LIST_MOBILE
+GET http://localhost:8080/LIST_FOOD
+GET http://localhost:8080/LIST_USER
+GET http://localhost:8080/LIST_STUDENT
+GET http://localhost:8080/LIST_STORE

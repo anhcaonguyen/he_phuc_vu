@@ -1,0 +1,17 @@
+Ứng dụng: WinFrom, Web, Web APP (Client) => API (Gọi REQUEST) => Server *
+
+Ứng dụng Dịch vụ Dữ liệu, Images ... (Ngôn ngữ NODEJS) trong đó dữ liệu: file json, CSDL MongoDB, SQL Server....
+
+Client => Yêu cầu (Request) => Server => Xử lý => Trả kết quả (Response) về lại cho client 
+
+API: GET, POST, DELETE, PUT ....
+
+Client Xử lý dữ liệu từ Server Gởi về
+
+CHÚNG TA SỬ DỤNG NODEJS ĐỂ XÂY DỰNG DỊCH VỤ
+
+B1 Cài đặt nodejs: https://nodejs.org/en/download 
+B2 Test NODEJS: Cửa sổ cmd: node -v => v22.6.0 => C:\Program Files\nodejs
+
+
+

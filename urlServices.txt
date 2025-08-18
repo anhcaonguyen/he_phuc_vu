@@ -1,0 +1,12 @@
+GET
+http://localhost:8080/LIST_TIVI
+http://localhost:8080/LIST_MOBILE
+http://localhost:8080/LIST_FOOD
+http://localhost:8080/LIST_STORE
+http://localhost:8080/LIST_USER
+http://localhost:8080/LIST_STUDENT
+
+GET IMG
+http://localhost:8080/<Ma_so>.png
+
+
