@@ -161,7 +161,7 @@ const server = http.createServer((req, res) => {
                     console.log(result)
                     res.end(JSON.stringify(kq));
                 }).catch((err) => {
-                    console.error("Error Insert User: ", err)
+                    console.error("Error Insert Mobile: ", err)
                     kq.noi_dung = false;
                     res.end(JSON.stringify(kq));
                 })
@@ -183,6 +183,104 @@ const server = http.createServer((req, res) => {
                 }
             })
 
+        } else if (url == "/INSERT_TIVI") {
+            // Server Xử lý và Trả kết quả lại cho Client
+            req.on("end", () => {
+                let kq = {
+                    "noi_dung": true
+                }
+                let new_document = JSON.parse(noi_dung_nhan);
+                db.insertOne("tivi", new_document).then((result) => {
+                    console.log(result)
+                    res.end(JSON.stringify(kq));
+                }).catch((err) => {
+                    console.error("Error Insert Tivi: ", err)
+                    kq.noi_dung = false;
+                    res.end(JSON.stringify(kq));
+                })
+
+            });
+        } else if (url == "/UPLOAD_IMG_TIVI") {
+            req.on('end', function () {
+                let img = JSON.parse(noi_dung_nhan);
+                let kq = { "noi_dung": true };
+                // upload img in images Server ------------------------------
+                let kqImg = saveMedia(img.name, img.src)
+                if (kqImg == "OK") {
+                    res.writeHead(200, { "Content-Type": "text/json; charset=utf-8" });
+                    res.end(JSON.stringify(kq));
+                } else {
+                    kq.noi_dung = false
+                    res.writeHead(200, { "Content-Type": "text/json; charset=utf-8" });
+                    res.end(JSON.stringify(kq));
+                }
+            })
+
+        } else if (url == "/INSERT_FOOD") {
+            // Server Xử lý và Trả kết quả lại cho Client
+            req.on("end", () => {
+                let kq = {
+                    "noi_dung": true
+                }
+                let new_document = JSON.parse(noi_dung_nhan);
+                db.insertOne("food", new_document).then((result) => {
+                    console.log(result)
+                    res.end(JSON.stringify(kq));
+                }).catch((err) => {
+                    console.error("Error Insert Food: ", err)
+                    kq.noi_dung = false;
+                    res.end(JSON.stringify(kq));
+                })
+
+            });
+        } else if (url == "/UPLOAD_IMG_FOOD") {
+            req.on('end', function () {
+                let img = JSON.parse(noi_dung_nhan);
+                let kq = { "noi_dung": true };
+                // upload img in images Server ------------------------------
+                let kqImg = saveMedia(img.name, img.src)
+                if (kqImg == "OK") {
+                    res.writeHead(200, { "Content-Type": "text/json; charset=utf-8" });
+                    res.end(JSON.stringify(kq));
+                } else {
+                    kq.noi_dung = false
+                    res.writeHead(200, { "Content-Type": "text/json; charset=utf-8" });
+                    res.end(JSON.stringify(kq));
+                }
+            })
+
+        } else if (url == "/INSERT_USER") {
+            // Server Xử lý và Trả kết quả lại cho Client
+            req.on("end", () => {
+                let kq = {
+                    "noi_dung": true
+                }
+                let new_document = JSON.parse(noi_dung_nhan);
+                db.insertOne("user", new_document).then((result) => {
+                    console.log(result)
+                    res.end(JSON.stringify(kq));
+                }).catch((err) => {
+                    console.error("Error Insert User: ", err)
+                    kq.noi_dung = false;
+                    res.end(JSON.stringify(kq));
+                })
+
+            });
+        } else if (url == "/UPLOAD_IMG_USER") {
+            req.on('end', function () {
+                let img = JSON.parse(noi_dung_nhan);
+                let kq = { "noi_dung": true };
+                // upload img in images Server ------------------------------
+                let kqImg = saveMedia(img.name, img.src)
+                if (kqImg == "OK") {
+                    res.writeHead(200, { "Content-Type": "text/json; charset=utf-8" });
+                    res.end(JSON.stringify(kq));
+                } else {
+                    kq.noi_dung = false
+                    res.writeHead(200, { "Content-Type": "text/json; charset=utf-8" });
+                    res.end(JSON.stringify(kq));
+                }
+            })
         } else {
             res.end(result)
         }
@@ -193,15 +291,56 @@ const server = http.createServer((req, res) => {
             noi_dung_nhan += data
         })
         // Server xử lý dữ liệu trả kết quả cho client
-        if (url == "/UPDATE_USER") {
-            req.on("end", () => {
-                res.end(noi_dung_nhan);
-            })
-        } else if (url == "/UPDATE_MOBILE") {
+        if (url == "/UPDATE_MOBILE") {
             req.on('end', function () {
                 let mobileUpdate = JSON.parse(noi_dung_nhan);
                 let ket_qua = { "Noi_dung": true };
                 db.updateOne("mobile", mobileUpdate.condition, mobileUpdate.update).then(result => {
+                    console.log(result);
+                    res.writeHead(200, { "Content-Type": "text/json;charset=utf-8" });
+                    res.end(JSON.stringify(ket_qua));
+                }).catch(err => {
+                    console.log(err);
+                    ket_qua.Noi_dung = false;
+                    res.writeHead(200, { "Content-Type": "text/json;charset=utf-8" });
+                    res.end(JSON.stringify(ket_qua))
+                })
+            })
+        } else if (url == "/UPDATE_TIVI") {
+            req.on('end', function () {
+                let mobileUpdate = JSON.parse(noi_dung_nhan);
+                let ket_qua = { "Noi_dung": true };
+                db.updateOne("tivi", mobileUpdate.condition, mobileUpdate.update).then(result => {
+                    console.log(result);
+                    res.writeHead(200, { "Content-Type": "text/json;charset=utf-8" });
+                    res.end(JSON.stringify(ket_qua));
+                }).catch(err => {
+                    console.log(err);
+                    ket_qua.Noi_dung = false;
+                    res.writeHead(200, { "Content-Type": "text/json;charset=utf-8" });
+                    res.end(JSON.stringify(ket_qua))
+                })
+            })
+        } else if (url == "/UPDATE_FOOD") {
+            req.on('end', function () {
+                let mobileUpdate = JSON.parse(noi_dung_nhan);
+                let ket_qua = { "Noi_dung": true };
+                db.updateOne("food", mobileUpdate.condition, mobileUpdate.update).then(result => {
+                    console.log(result);
+                    res.writeHead(200, { "Content-Type": "text/json;charset=utf-8" });
+                    res.end(JSON.stringify(ket_qua));
+                }).catch(err => {
+                    console.log(err);
+                    ket_qua.Noi_dung = false;
+                    res.writeHead(200, { "Content-Type": "text/json;charset=utf-8" });
+                    res.end(JSON.stringify(ket_qua))
+                })
+            })
+        } else if (url == "/UPDATE_USER") {
+            req.on('end', function () {
+                let mobileUpdate = JSON.parse(noi_dung_nhan);
+                let ket_qua = { "Noi_dung": true };
+                db.updateOne("user", mobileUpdate.condition, mobileUpdate.update).then(result => {
                     console.log(result);
                     res.writeHead(200, { "Content-Type": "text/json;charset=utf-8" });
                     res.end(JSON.stringify(ket_qua));
@@ -224,7 +363,18 @@ const server = http.createServer((req, res) => {
         // Server xử lý dữ liệu trả kết quả cho client
         if (url == "/DELETE_USER") {
             req.on("end", () => {
-                res.end(noi_dung_nhan);
+                let kq = {
+                    noi_dung: true
+                }
+                let filter = JSON.parse(noi_dung_nhan);
+                db.deleteOne("user", filter).then((result) => {
+                    console.log(result);
+                    res.end(JSON.stringify(kq));
+                }).catch((err) => {
+                    console.error("Error Delete user", err);
+                    kq.noi_dung = false;
+                    res.end(JSON.stringify(kq));
+                })
             });
         } else if (url == "/DELETE_MOBILE") {
             // Server xử lý và trả kết quả lại client
@@ -241,7 +391,39 @@ const server = http.createServer((req, res) => {
                     kq.noi_dung = false;
                     res.end(JSON.stringify(kq));
                 })
-            })
+            });
+        } else if (url == "/DELETE_TIVI") {
+            // Server xử lý và trả kết quả lại client
+            req.on("end", () => {
+                let kq = {
+                    noi_dung: true
+                }
+                let filter = JSON.parse(noi_dung_nhan);
+                db.deleteOne("tivi", filter).then((result) => {
+                    console.log(result);
+                    res.end(JSON.stringify(kq));
+                }).catch((err) => {
+                    console.error("Error Delete Tivi", err);
+                    kq.noi_dung = false;
+                    res.end(JSON.stringify(kq));
+                })
+            });
+        } else if (url == "/DELETE_FOOD") {
+            // Server xử lý và trả kết quả lại client
+            req.on("end", () => {
+                let kq = {
+                    noi_dung: true
+                }
+                let filter = JSON.parse(noi_dung_nhan);
+                db.deleteOne("food", filter).then((result) => {
+                    console.log(result);
+                    res.end(JSON.stringify(kq));
+                }).catch((err) => {
+                    console.error("Error Delete Food", err);
+                    kq.noi_dung = false;
+                    res.end(JSON.stringify(kq));
+                })
+            });
         } else {
             res.end(result);
         }
@@ -282,6 +464,4 @@ let saveMedia = (Ten, Chuoi_nhi_phan) => {
     }
     return Kq
 }
-
-
 
